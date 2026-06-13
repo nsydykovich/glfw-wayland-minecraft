@@ -2943,9 +2943,9 @@ void _glfwSetWindowIconWayland(_GLFWwindow* window,
                                int count, const GLFWimage* images)
 {
     if (!_glfw.wl.toplevelIconManager)
-    {   
-        _glfwInputError(GLFW_FEATURE_UNAVAILABLE,
-                        "Wayland: The platform does not support setting the window icon");
+    {
+        // Older Minecraft/LWJGL3 calls this on startup; log instead of throwing a Java exception
+        fprintf(stderr, "[GLFW] Wayland: The platform does not support setting the window icon\n");
         return;
     }
 
