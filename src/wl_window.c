@@ -1383,7 +1383,9 @@ static void inputText(_GLFWwindow* window, uint32_t scancode)
         {
             const int mods = _glfw.wl.xkb.modifiers;
             const int plain = !(mods & (GLFW_MOD_CONTROL | GLFW_MOD_ALT));
-            _glfwInputChar(window, codepoint, mods, plain);
+
+            if (plain)
+                _glfwInputChar(window, codepoint, mods, plain);
         }
     }
 }
